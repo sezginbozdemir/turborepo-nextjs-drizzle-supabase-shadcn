@@ -1,0 +1,51 @@
+{
+  "name": "price-axis",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter='./apps/client'",
+    "build:server": "turbo run build --filter='./apps/server'",
+    "build:env": "turbo run build --filter='./packages/env-loader'",
+    "dev": "turbo run dev",
+    "start": "turbo run start",
+    "start:web": "turbo run start --filter='./apps/client'",
+    "start:server": "turbo run start --filter='./apps/server'",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "check-types": "turbo run check-types",
+    "db:up": "npm run db:up --workspace packages/database",
+    "db:push": "npm run db:push --workspace packages/database",
+    "db:pull": "npm run db:pull --workspace packages/database",
+    "db:generate": "npm run db:generate --workspace packages/database",
+    "db:migrate": "npm run db:migrate --workspace packages/database",
+    "purge:nm": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "purge:turbo": "find . -name '.turbo' -type d -prune -exec rm -rf '{}' +",
+    "purge:next": "find . -name '.next' -type d -prune -exec rm -rf '{}' +",
+    "purge:dist": "find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
+    "purge:all": "npm run purge:nm && npm run purge:turbo && npm run purge:next && npm run purge:dist",
+    "reinstall": "npm run purge:all && npm install"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.5",
+    "typescript": "5.8.3",
+    "@repo/typescript-config": "*"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "npm@11.2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "dependencies": {
+    "@t3-oss/env-core": "^0.13.8",
+    "dotenv": "^17.2.1",
+    "zod": "^4.0.14",
+    "@repo/shared": "*",
+    "@repo/env-loader": "*",
+    "@repo/ui": "*",
+    "@repo/mailer": "*",
+    "@repo/database": "*"
+  }
+}

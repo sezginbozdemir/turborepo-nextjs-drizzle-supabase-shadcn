@@ -1,0 +1,32 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "imports": {
+    "#*": "./src/*"
+  },
+  "scripts": {
+    "build": "rimraf dist & tsc",
+    "dev": "tsx --watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/helmet": "^0.0.48",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^24.1.0",
+    "@types/papaparse": "^5.3.16",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.20.3"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "morgan": "^1.10.1"
+  }
+}

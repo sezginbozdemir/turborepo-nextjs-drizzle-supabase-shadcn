@@ -1,0 +1,24 @@
+{
+  "name": "@repo/mailer",
+  "version": "1.0.0",
+  "exports": {
+    ".": "./src/email.sender.ts"
+  },
+  "scripts": {
+    "dev": "tsc --noEmit -w --preserveWatchOutput",
+    "test:sender": "tsx ./src/test.sender.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/nodemailer": "^6.4.17",
+    "tsx": "^4.20.3",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "handlebars": "^4.7.8",
+    "nodemailer": "^7.0.5"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
