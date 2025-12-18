@@ -1,10 +1,10 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { env } from "@repo/env-loader";
+import { env } from "../env";
 import { Database } from "./supabase.types";
 
 // Create and export a supabase client for browser usage.
 
 export const browserSupabase = createBrowserClient<Database>(
-  env.SUPABASE_URL,
-  env.SUPABASE_ANON_KEY,
+  env.NEXT_PUBLIC_SUPABASE_URL,
+  env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
 );

@@ -10,7 +10,7 @@ import {
   LoggerConfig,
   TimerData,
 } from "./logger.interface";
-import { env } from "@repo/env-loader";
+import { env } from "../env";
 
 class ConsoleLogger {
   // A label indicating where this logger is used ( service name, module name, etc. )

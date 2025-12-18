@@ -8,14 +8,7 @@ This package provides shared database clients for the monorepo. It exports:
 
 ---
 
-It relies on **`@repo/env-loader`** for environment variable loading and configuration.
-Before using `@repo/database` ensure that you installed and built `@repo/env-loader`.
-
-```bash
-
-npm run build:env
-
-```
+It relies on **`@repo/shared`** for environment variable loading.
 
 ---
 

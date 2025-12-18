@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "exports": {
     "./logger": "./src/logger/index.ts",
-    "./parser": "./src/parser/csv.parser.ts"
+    "./parser": "./src/parser/csv.parser.ts",
+    "./env-loader": "./src/env-loader/resolve.env.ts"
   },
   "scripts": {
     "dev": "tsc --noEmit -w --preserveWatchOutput"

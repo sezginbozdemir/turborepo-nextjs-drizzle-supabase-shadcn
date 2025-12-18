@@ -1,12 +1,10 @@
-import { resolveEnvs } from "@repo/env-loader";
-import { env } from "@repo/env-loader";
+import { env } from "../env";
 import { createLogger } from "@repo/shared/logger";
 import { execSync } from "child_process";
-resolveEnvs();
 const logger = createLogger("database module");
 
 const PROJECT_REF = env.PROJECT_REF;
-const outputFile = "./supabase/supabase.types.ts";
+const outputFile = "./src/supabase/supabase.types.ts";
 
 if (!PROJECT_REF) logger.error("project ref is not set in your environment");
 

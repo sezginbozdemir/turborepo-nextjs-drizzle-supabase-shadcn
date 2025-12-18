@@ -3,22 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./drizzle/*": "./drizzle/*.ts",
-    "./supabase/*": "./supabase/*.ts"
+    "./drizzle/*": "./src/drizzle/*.ts",
+    "./supabase/*": "./src/supabase/*.ts"
   },
   "scripts": {
     "dev": "tsc --noEmit -w --preserveWatchOutput",
-    "db:push": "drizzle-kit push --config ./drizzle/drizzle.config.ts",
-    "db:up": "drizzle-kit up --config ./drizzle/drizzle.config.ts",
-    "db:generate": "drizzle-kit generate --config ./drizzle/drizzle.config.ts",
-    "db:pull": "drizzle-kit introspect --config ./drizzle/drizzle.config.ts",
-    "db:migrate": "drizzle-kit migrate --config ./drizzle/drizzle.config.ts",
-    "db:studio": "drizzle-kit studio --config ./drizzle/drizzle.config.ts",
-    "sb:types": "tsx ./supabase/generate-types.ts"
+    "db:push": "drizzle-kit push --config ./src/drizzle/drizzle.config.ts",
+    "db:up": "drizzle-kit up --config ./src/drizzle/drizzle.config.ts",
+    "db:generate": "drizzle-kit generate --config ./src/drizzle/drizzle.config.ts",
+    "db:pull": "drizzle-kit introspect --config ./src/drizzle/drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config ./src/drizzle/drizzle.config.ts",
+    "db:studio": "drizzle-kit studio --config ./src/drizzle/drizzle.config.ts",
+    "sb:types": "tsx ./src/supabase/generate-types.ts"
   },
   "devDependencies": {
     "@types/node": "^22.15.3",
     "drizzle-kit": "^0.31.7",
+    "supabase": "^2.67.2",
     "tsx": "^4.20.3",
     "typescript": "5.8.2"
   },

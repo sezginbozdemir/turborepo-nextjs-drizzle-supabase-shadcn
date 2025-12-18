@@ -2,8 +2,8 @@ import express from "express";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-import { env } from "@repo/env-loader";
 import { createLogger } from "@repo/shared/logger";
+import { env } from "#config/env.config.js";
 
 const app = express();
 const PORT = env.SERVER_PORT || 9000;
