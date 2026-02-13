@@ -6,8 +6,17 @@ import { createLogger } from "@repo/shared/logger";
 const logger = createLogger("email sender");
 
 export async function createSender(
+  testConfig?: EmailConfig,
   rateLimitMs?: number,
 ): Promise<EmailService> {
+  if (testConfig) {
+    logger.info("Creating sender from test config.", {
+      host: testConfig.host,
+      port: testConfig.port,
+    });
+
+    return new EmailService(testConfig, rateLimitMs);
+  }
   const host = env.SMTP_HOST;
   const port = Number(env.SMTP_PORT) || 587;
   const secure = env.SMTP_SECURE ? env.SMTP_SECURE === "true" : false;

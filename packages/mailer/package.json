@@ -1,20 +1,24 @@
 {
   "name": "@repo/mailer",
   "version": "1.0.0",
+  "type": "module",
   "exports": {
     ".": "./src/email.sender.ts"
   },
   "scripts": {
     "dev": "tsc --noEmit -w --preserveWatchOutput",
-    "test:sender": "tsx ./src/test.sender.ts"
+    "test": "vitest run"
   },
   "devDependencies": {
+    "@repo/vitest-config": "*",
     "@types/node": "^22.15.3",
     "@types/nodemailer": "^6.4.17",
+    "@vitest/coverage-istanbul": "^4.0.18",
     "tsx": "^4.20.3",
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "vitest": "^4.0.18",
     "handlebars": "^4.7.8",
     "nodemailer": "^7.0.5"
   },

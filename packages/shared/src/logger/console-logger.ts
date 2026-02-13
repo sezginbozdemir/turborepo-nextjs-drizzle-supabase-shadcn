@@ -36,8 +36,15 @@ class ConsoleLogger {
 
     // Default Config
 
+    const min =
+      env.NODE_ENV === "production"
+        ? "warn"
+        : env.NODE_ENV === "test"
+          ? "error"
+          : "debug";
+
     this.config = {
-      minLevel: env.NODE_ENV === "production" ? "warn" : "debug",
+      minLevel: min,
       enableConsole: true,
       enableFile: false,
       logDir: "logs",

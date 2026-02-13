@@ -1,20 +1,25 @@
 {
   "name": "@repo/shared",
   "version": "1.0.0",
+  "type": "module",
   "exports": {
     "./logger": "./src/logger/index.ts",
     "./parser": "./src/parser/csv.parser.ts",
     "./env-loader": "./src/env-loader/resolve.env.ts"
   },
   "scripts": {
-    "dev": "tsc --noEmit -w --preserveWatchOutput"
+    "dev": "tsc --noEmit -w --preserveWatchOutput",
+    "test": "vitest run"
   },
   "devDependencies": {
+    "@repo/vitest-config": "*",
+    "@vitest/coverage-istanbul": "^4.0.18",
     "@types/node": "^22.15.3",
     "tsx": "^4.20.3",
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "vitest": "^4.0.18",
     "papaparse": "^5.5.3"
   },
   "license": "ISC"

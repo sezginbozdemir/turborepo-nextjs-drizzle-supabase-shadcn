@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+    <main className="min-h-screen bg-linear-to-b from-slate-50 to-white">
       <div className="container mx-auto px-6 py-12">
         {/* Hero */}
         <section className="text-center mb-16">

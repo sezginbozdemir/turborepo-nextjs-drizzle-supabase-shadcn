@@ -7,6 +7,14 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "test": {
+      "inputs": ["$TURBO_DEFAULT$", "$TURBO_ROOT$/vitest.config.ts"],
+      "dependsOn": ["transit", "@repo/vitest-config#build"],
+      "outputs": ["coverage.json"]
+    },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
@@ -16,6 +24,23 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "collect-json-reports": {
+      "cache": false
+    },
+    "merge-json-reports": {
+      "dependsOn": ["collect-json-reports"],
+      "inputs": ["coverage/raw/**"],
+      "outputs": ["coverage/merged/**"]
+    },
+    "report": {
+      "dependsOn": ["merge-json-reports"],
+      "inputs": ["coverage/merge"],
+      "outputs": ["coverage/report/**"]
+    },
+    "view-report": {
+      "dependsOn": ["report"],
+      "cache": false
     }
   },
   "globalEnv": []

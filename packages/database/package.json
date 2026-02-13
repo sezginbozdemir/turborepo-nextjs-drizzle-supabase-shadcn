@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "tsc --noEmit -w --preserveWatchOutput",
+    "test": "vitest run",
     "db:push": "drizzle-kit push --config ./src/drizzle/drizzle.config.ts",
     "db:up": "drizzle-kit up --config ./src/drizzle/drizzle.config.ts",
     "db:generate": "drizzle-kit generate --config ./src/drizzle/drizzle.config.ts",
@@ -17,6 +18,8 @@
     "sb:types": "tsx ./src/supabase/generate-types.ts"
   },
   "devDependencies": {
+    "@repo/vitest-config": "*",
+    "@vitest/coverage-istanbul": "^4.0.18",
     "@types/node": "^22.15.3",
     "drizzle-kit": "^0.31.7",
     "supabase": "^2.67.2",
@@ -24,6 +27,7 @@
     "typescript": "5.8.2"
   },
   "dependencies": {
+    "vitest": "^4.0.18",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.52.1",
     "@types/pg": "^8.15.5",

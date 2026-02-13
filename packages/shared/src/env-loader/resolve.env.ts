@@ -16,7 +16,6 @@ export const resolveEnvs = () => {
     const folderPath = resolve(dir, createUpFolderSyntax);
     const nodeEnv = process.env["NODE_ENV"];
 
-    // Check if this is the root directory by looking for pnpm-workspace.yaml
     const workspaceFilePath = resolve(folderPath, "turbo.json");
     const isRootDirectory = existsSync(workspaceFilePath);
     if (!isRootDirectory) {

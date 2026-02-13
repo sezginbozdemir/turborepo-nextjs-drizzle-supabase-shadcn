@@ -1,7 +1,7 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { env } from "../env";
-import { Database } from "@repo/database/supabase/supabase.types";
+import type { Database } from "@repo/database/supabase/supabase.types";
 
 /**
  * Especially important if using Fluid compute: Don't put this client in a

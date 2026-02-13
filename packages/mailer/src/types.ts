@@ -6,7 +6,7 @@ export interface EmailConfig {
     user: string;
     pass: string;
   };
-  from?: string;
+  from: string;
 }
 
 export interface EmailData {

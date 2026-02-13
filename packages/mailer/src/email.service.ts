@@ -13,7 +13,7 @@ const logger = createLogger("email service");
 export class EmailService {
   private transporter: Transporter;
   private templateEngine: TemplateEngine;
-  private defaultFrom?: string;
+  private from: string;
   private rateLimitDelay: number;
 
   constructor(config: EmailConfig, rateLimitMs = 100) {
@@ -24,7 +24,7 @@ export class EmailService {
       auth: config.auth,
     });
 
-    this.defaultFrom = config.from;
+    this.from = config.from;
     this.templateEngine = new TemplateEngine();
     this.rateLimitDelay = rateLimitMs;
     logger.info(
@@ -112,7 +112,7 @@ export class EmailService {
     const recipients = Array.isArray(to) ? to.join(", ") : to;
 
     const mailOptions = {
-      from: this.defaultFrom,
+      from: this.from,
       to: recipients,
       subject,
       html: emailHtml,

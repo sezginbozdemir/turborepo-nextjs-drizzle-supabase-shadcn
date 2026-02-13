@@ -9,5 +9,5 @@
 //
 // or
 // - define and export all of your tables directly inside this file.
-//
+
 export {};

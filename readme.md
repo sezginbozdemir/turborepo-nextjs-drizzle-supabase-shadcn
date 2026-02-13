@@ -10,13 +10,12 @@ all managed within a single Turborepo monorepo.
 
 ### apps/
 
-- **client** — Next.js frontend
-- **server** — Express backend
+- **web** — Next.js frontend
+- **api** — Express backend
 
 ### packages/
 
 - **database** — Drizzle schema and database utilities
-- **env-loader** — Centralized environment validation
 - **mailer** — Email utilities (template + sender logic)
 - **shared** — Shared utilities and logic between apps
 - **typescript-config** — tsconfig base configuration

@@ -8,8 +8,12 @@
     "build:env": "turbo run build --filter='./packages/env-loader'",
     "dev": "turbo run dev",
     "start": "turbo run start",
-    "start:web": "turbo run start --filter='./apps/web'",
-    "start:server": "turbo run start --filter='./apps/api'",
+    "test": "turbo run test",
+    "test:projects": "vitest run",
+    "test:projects:watch": "vitest --watch",
+    "view-report": "turbo run view-report",
+    "start:web": "turbo run start --filter='./apps/client'",
+    "start:server": "turbo run start --filter='./apps/server'",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "db:up": "npm run db:up --workspace packages/database",
@@ -26,10 +30,12 @@
     "reinstall": "npm run purge:all && npm install"
   },
   "devDependencies": {
+    "@repo/typescript-config": "*",
+    "@repo/vitest-config": "*",
     "prettier": "^3.6.2",
     "turbo": "^2.5.5",
     "typescript": "5.8.3",
-    "@repo/typescript-config": "*"
+    "vitest": "^4.0.17"
   },
   "engines": {
     "node": ">=18"
@@ -40,13 +46,12 @@
     "packages/*"
   ],
   "dependencies": {
+    "@repo/database": "*",
+    "@repo/mailer": "*",
+    "@repo/shared": "*",
+    "@repo/ui": "*",
     "@t3-oss/env-core": "^0.13.8",
     "dotenv": "^17.2.1",
-    "zod": "^4.0.14",
-    "@repo/shared": "*",
-    "@repo/env-loader": "*",
-    "@repo/ui": "*",
-    "@repo/mailer": "*",
-    "@repo/database": "*"
+    "zod": "^4.0.14"
   }
 }

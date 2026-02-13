@@ -1,6 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
 import { env } from "../env";
-import { Database } from "./supabase.types";
+import type { Database } from "./supabase.types";
 
 // Create and export a supabase client for browser usage.
 
