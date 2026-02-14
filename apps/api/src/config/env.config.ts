@@ -11,7 +11,7 @@ export const env = createEnv({
     SERVER_PORT: z.string(),
     PROJECT_REF: z.string(),
     DATABASE_URL: z.string(),
-    NODE_ENV: z.enum(["development", "production"]),
+    NODE_ENV: z.enum(["development", "production", "test"]),
   },
   runtimeEnv: process.env,
 });

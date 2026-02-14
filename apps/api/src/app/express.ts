@@ -1,0 +1,32 @@
+import { CORS_OPTIONS } from "#config/cors.config.js";
+import express from "express";
+import cors from "cors";
+import helmet from "helmet";
+import hpp from "hpp";
+import compression from "compression";
+import cookieParser from "cookie-parser";
+import { createServer as createHttpServer } from "http";
+import { responseLogger } from "./middlewares/response.logger";
+
+export function createServer() {
+  const app = express();
+
+  app.use(responseLogger);
+  app.use(cors(CORS_OPTIONS));
+  app.use(helmet());
+  app.use(hpp());
+  app.use(compression());
+  app.use(express.json({ limit: "10mb" }));
+  app.use(express.urlencoded({ extended: true, limit: "10mb" }));
+  app.use(cookieParser());
+  app.set("json spaces", 0);
+
+  // Health check
+  app.use("/ping", (_, res) => {
+    res.status(200).json({ message: "OK" });
+  });
+
+  const server = createHttpServer(app);
+
+  return { app, server };
+}
