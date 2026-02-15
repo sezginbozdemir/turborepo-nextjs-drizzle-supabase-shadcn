@@ -1,4 +1,8 @@
-import { DatabaseError, UnknownError } from "#app/errors/errors.js";
+import {
+  DatabaseError,
+  HttpException,
+  UnknownError,
+} from "#app/errors/errors.js";
 import { DrizzleQueryError } from "@repo/database/drizzle/drizzle.client";
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { createLogger } from "@repo/shared/logger";
@@ -23,6 +27,11 @@ export const errorHandler: ErrorRequestHandler = function (
     }
     logger.error("database error", { err: databaseError });
     return res.status(500).json({ message: databaseError.message });
+  }
+
+  if (error instanceof HttpException) {
+    logger.error("HttpException", { error });
+    return res.status(error.status).json({ message: error.errorMessage });
   }
 
   const unknownError = new UnknownError(error);

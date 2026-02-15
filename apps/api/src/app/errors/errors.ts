@@ -18,6 +18,19 @@ export class DatabaseError extends Error {
   }
 }
 
+export class HttpException extends Error {
+  public status: number;
+  public errorMessage: string;
+
+  constructor(status: number, errorMessage: string) {
+    super(errorMessage ?? "HttpException");
+    this.name = "HttpException";
+    this.status = status;
+    this.errorMessage = errorMessage;
+    if (Error.captureStackTrace) Error.captureStackTrace(this, HttpException);
+  }
+}
+
 export class UnknownError extends Error {
   constructor(error: unknown) {
     const defined = error instanceof Error;
