@@ -10,11 +10,16 @@ import { createLogger } from "@repo/shared/logger";
 const logger = createLogger("express error handler");
 
 export const errorHandler: ErrorRequestHandler = function (
-  error,
+  err,
   _req: Request,
   res: Response,
-  _next: NextFunction,
+  next: NextFunction,
 ) {
+  let error = err as any;
+  if (res.headersSent) return next(error);
+  if (error?.type === "entity.parse.failed") {
+    error = new HttpException(400, "Invalid JSON payload");
+  }
   if (error instanceof DrizzleQueryError) {
     const databaseError = new DatabaseError(error);
     if (databaseError?.code === "23505") {
