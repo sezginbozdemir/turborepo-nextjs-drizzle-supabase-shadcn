@@ -1,5 +1,5 @@
 import { createLogger } from "@repo/shared/logger";
-import { Request, Response, NextFunction } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 const logger = createLogger("http response");
 

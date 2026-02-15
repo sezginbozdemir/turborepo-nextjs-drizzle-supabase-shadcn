@@ -6,11 +6,13 @@ import hpp from "hpp";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import { createServer as createHttpServer } from "http";
-import { responseLogger } from "./middlewares/response.logger";
+import { responseLogger } from "./middlewares/response-logger.middleware";
+import { requestLogger } from "./middlewares/request-logger.middleware";
+import { errorHandler } from "./middlewares/error-handler.middleware";
 
 export function createServer() {
   const app = express();
-
+  app.use(requestLogger);
   app.use(responseLogger);
   app.use(cors(CORS_OPTIONS));
   app.use(helmet());
@@ -20,6 +22,7 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
   app.use(cookieParser());
   app.set("json spaces", 0);
+  app.use(errorHandler);
 
   // Health check
   app.use("/ping", (_, res) => {
