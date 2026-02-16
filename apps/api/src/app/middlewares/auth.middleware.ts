@@ -13,6 +13,32 @@ function toAuthUser(session: any): AuthUser {
     email_verified: session.user.emailVerified,
   } satisfies AuthUser;
 }
+export async function requireAdmin(
+  req: Request,
+  _res: Response,
+  next: NextFunction,
+) {
+  try {
+    const session = await auth.api.getSession({
+      headers: fromNodeHeaders(req.headers),
+    });
+
+    if (!session) {
+      return next(new HttpException(401, "Unauthorized request"));
+    }
+
+    const user = toAuthUser(session);
+
+    if (user.role !== "admin") {
+      return next(new HttpException(403, "Forbidden: Admin access required"));
+    }
+
+    req.user = user;
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+}
 
 export async function requireAuth(
   req: Request,
