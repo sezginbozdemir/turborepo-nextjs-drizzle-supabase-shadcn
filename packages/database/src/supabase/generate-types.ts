@@ -3,7 +3,7 @@ import { createLogger } from "@repo/shared/logger";
 import { execSync } from "child_process";
 const logger = createLogger("database module");
 
-const PROJECT_REF = env.PROJECT_REF;
+const PROJECT_REF = env.SUPABASE_PROJECT_REF;
 const outputFile = "./src/supabase/supabase.types.ts";
 
 if (!PROJECT_REF) logger.error("project ref is not set in your environment");

@@ -1,25 +1,14 @@
-import {
-  pgTable,
-  pgEnum,
-  uuid,
-  varchar,
-  timestamp,
-  text,
-} from "drizzle-orm/pg-core";
+import { pgTable, pgEnum, varchar, text, boolean } from "drizzle-orm/pg-core";
+import { baseModel } from "./_columns";
 
-export const userEnum = pgEnum("user_role", ["admin", "default"]);
+export const userEnum = pgEnum("role", ["admin", "user"]);
 
 export const users = pgTable("users", {
-  id: uuid("id").primaryKey(),
-  firstName: varchar("first_name", { length: 50 }),
-  lastName: varchar("last_name", { length: 50 }),
+  ...baseModel,
+  name: varchar("name", { length: 50 }),
   phone: varchar("phone", { length: 14 }).unique(),
   email: text("email").unique().notNull(),
-  role: userEnum("role").notNull().default("default"),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
+  email_verified: boolean("email_verified").notNull().default(false),
+  image: text("image"),
+  role: userEnum("role").notNull().default("user"),
 });

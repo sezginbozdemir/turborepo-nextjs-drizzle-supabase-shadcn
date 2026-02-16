@@ -1,35 +1,37 @@
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import morgan from "morgan";
 import { createLogger } from "@repo/shared/logger";
 import { env } from "#config/env.config.js";
+import { createServer } from "#app/express.js";
 
-const app = express();
-const PORT = env.SERVER_PORT || 9000;
+const PORT = Number(env.SERVER_PORT) || 9000;
 
 const logger = createLogger("express entry");
 
-// Middleware
-
-app.use(helmet());
-app.use(cors());
-app.use(morgan("combined"));
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true }));
-
-// Health check
-app.get("/health", (_req, res) => {
-  res.status(200).json({
-    status: "OK",
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
+async function startServer() {
+  const { server } = createServer();
+  server.on("error", (err) => {
+    logger.error("HTTP server error", { err });
+    process.exit(1);
   });
-});
 
-// Start server
-app.listen(PORT, () => {
-  logger.info(`Server is running on port ${PORT}`, {
-    Environment: `${env.NODE_ENV || "Development"}`,
+  server.listen(PORT, () => {
+    logger.info(`Server Listening on port: ${PORT}`);
   });
+
+  async function shutdown(signal: string) {
+    logger.info(`${signal} received. Gracefully shutting down...`);
+    await new Promise<void>((resolve) => {
+      server.close(() => {
+        logger.info("Http server closed.");
+        resolve();
+      });
+    });
+    logger.info("Shutdown completed.");
+    process.exit(0);
+  }
+  process.on("SIGTERM", () => shutdown("SIGTERM"));
+  process.on("SIGINT", () => shutdown("SIGINT"));
+}
+startServer().catch((err) => {
+  logger.error("Failed to start server:", { err });
+  process.exit(1);
 });

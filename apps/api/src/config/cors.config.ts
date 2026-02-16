@@ -14,5 +14,6 @@ const corsOrigin: CorsOptions["origin"] = (origin, callback) => {
 
 export const CORS_OPTIONS: CorsOptions = {
   origin: corsOrigin,
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "tsc --noEmit -w --preserveWatchOutput",
     "test": "vitest run",
-    "db:push": "drizzle-kit push --config ./src/drizzle/drizzle.config.ts",
+    "db:push": "drizzle-kit push --config ./src/drizzle/drizzle.config.ts --force",
     "db:up": "drizzle-kit up --config ./src/drizzle/drizzle.config.ts",
     "db:generate": "drizzle-kit generate --config ./src/drizzle/drizzle.config.ts",
     "db:pull": "drizzle-kit introspect --config ./src/drizzle/drizzle.config.ts",

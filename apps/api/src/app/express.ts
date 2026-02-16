@@ -9,6 +9,9 @@ import { createServer as createHttpServer } from "http";
 import { responseLogger } from "./middlewares/response-logger.middleware";
 import { requestLogger } from "./middlewares/request-logger.middleware";
 import { errorHandler } from "./middlewares/error-handler.middleware";
+import { toNodeHandler } from "better-auth/node";
+import { auth } from "./lib/auth";
+import { requireAuth } from "./middlewares/auth.middleware";
 
 export function createServer() {
   const app = express();
@@ -18,6 +21,8 @@ export function createServer() {
   app.use(helmet());
   app.use(hpp());
   app.use(compression());
+  (app.all("/api/auth/*"), toNodeHandler(auth));
+  app.use(requireAuth);
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
   app.use(cookieParser());

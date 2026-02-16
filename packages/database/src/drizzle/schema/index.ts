@@ -11,3 +11,6 @@
 // - define and export all of your tables directly inside this file.
 
 export * from "./user.schema";
+export * from "./session.schema";
+export * from "./account.schema";
+export * from "./verification.schema";
