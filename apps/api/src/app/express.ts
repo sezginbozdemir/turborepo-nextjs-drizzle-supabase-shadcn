@@ -21,12 +21,12 @@ export function createServer() {
   app.use(helmet());
   app.use(hpp());
   app.use(compression());
-  (app.all("/api/auth/*"), toNodeHandler(auth));
-  app.use(requireAuth);
+  app.all("/api/auth", toNodeHandler(auth));
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
   app.use(cookieParser());
   app.set("json spaces", 0);
+  app.use(requireAuth);
   app.use(errorHandler);
 
   // Health check
