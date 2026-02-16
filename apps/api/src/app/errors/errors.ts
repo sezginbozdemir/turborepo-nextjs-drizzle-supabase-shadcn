@@ -9,8 +9,9 @@ export class DatabaseError extends Error {
     super(error.message, { cause: error.cause });
     if (error.cause instanceof PostgresError)
       this.message = error.cause.message;
-    if (error.cause && typeof (error.cause as any).code === "string")
+    if (error.cause && typeof (error.cause as any).code === "string") {
       this.code = (error.cause as any).code;
+    }
     this.params = error.params;
     this.query = error.query;
 

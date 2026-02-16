@@ -6,6 +6,7 @@ import {
 import { DrizzleQueryError } from "@repo/database/drizzle/drizzle.client";
 import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 import { createLogger } from "@repo/shared/logger";
+import { APIError } from "better-auth";
 
 const logger = createLogger("express error handler");
 
@@ -20,6 +21,11 @@ export const errorHandler: ErrorRequestHandler = function (
   if (error?.type === "entity.parse.failed") {
     error = new HttpException(400, "Invalid JSON payload");
   }
+  if (error instanceof APIError) {
+    logger.error(error.message, { err: error });
+    return res.status(Number(error.status)).json({ message: error.message });
+  }
+
   if (error instanceof DrizzleQueryError) {
     const databaseError = new DatabaseError(error);
     if (databaseError?.code === "23505") {
