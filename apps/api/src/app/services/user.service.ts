@@ -1,4 +1,4 @@
-import { CreateUser, UserModel } from "#app/models/user.model.js";
+import { CreateUser, UserResponseModel } from "#app/models/user.model.js";
 import { db, DB } from "@repo/database/drizzle/drizzle.client";
 import { auth } from "#config/auth.config.js";
 
@@ -16,8 +16,8 @@ class UserService {
       body: data,
     });
 
-    return UserModel.parse(newUser);
+    return UserResponseModel.parse(newUser.user);
   }
 }
 
-export default UserService;
+export const userService = new UserService();

@@ -5,7 +5,7 @@ import { users } from "./user.schema";
 export const session = pgTable("session", {
   ...baseModel,
 
-  user_id: uuid("user_id")
+  user_id: text("user_id")
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
 

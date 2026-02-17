@@ -1,7 +1,7 @@
-import { uuid, timestamp } from "drizzle-orm/pg-core";
+import { text, timestamp } from "drizzle-orm/pg-core";
 
 export const baseModel = {
-  id: uuid("id").defaultRandom().primaryKey(),
+  id: text("id").primaryKey(),
   created_at: timestamp("created_at", { withTimezone: true })
     .defaultNow()
     .notNull(),

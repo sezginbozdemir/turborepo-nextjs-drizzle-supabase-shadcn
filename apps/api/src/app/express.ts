@@ -11,7 +11,7 @@ import { requestLogger } from "./middlewares/request-logger.middleware";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "../config/auth.config";
-import { requireAuth } from "./middlewares/auth.middleware";
+import { UserRouter } from "./routes";
 
 export function createServer() {
   const app = express();
@@ -26,13 +26,13 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
   app.use(cookieParser());
   app.set("json spaces", 0);
-  app.use(requireAuth);
   app.use(errorHandler);
 
   // Health check
   app.use("/ping", (_, res) => {
     res.status(200).json({ message: "OK" });
   });
+  app.use("/api/auth", UserRouter);
 
   const server = createHttpServer(app);
 

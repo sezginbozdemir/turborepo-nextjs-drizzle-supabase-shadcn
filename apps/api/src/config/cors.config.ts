@@ -1,7 +1,7 @@
 import { env } from "./env.config";
 import type { CorsOptions } from "cors";
 
-const IS_DEV = env.NODE_ENV === "development";
+const IS_DEV = env.NODE_ENV === "development" || env.NODE_ENV === "test";
 const CORS_ORIGINS = [env.NEXT_PUBLIC_WEB_URL];
 
 const corsOrigin: CorsOptions["origin"] = (origin, callback) => {

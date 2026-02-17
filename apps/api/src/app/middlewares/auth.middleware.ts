@@ -2,16 +2,16 @@ import type { NextFunction, Request, Response } from "express";
 import { fromNodeHeaders } from "better-auth/node";
 import { auth } from "#config/auth.config.js";
 import { HttpException } from "#app/errors/errors.js";
-import { AuthUser } from "#app/models/user.model.js";
+import { SessionUser } from "#app/models/user.model.js";
 
-function toAuthUser(session: any): AuthUser {
+function toAuthUser(session: any): SessionUser {
   return {
     id: session.user.id,
     role: session.user.role,
     name: session.user.name,
     email: session.user.email,
     email_verified: session.user.emailVerified,
-  } satisfies AuthUser;
+  } satisfies SessionUser;
 }
 export async function requireAdmin(
   req: Request,

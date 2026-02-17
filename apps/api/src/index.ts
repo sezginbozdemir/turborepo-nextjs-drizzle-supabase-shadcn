@@ -6,7 +6,7 @@ const PORT = Number(env.SERVER_PORT) || 9000;
 
 const logger = createLogger("express entry");
 
-async function startServer() {
+export async function startServer() {
   const { server } = createServer();
   server.on("error", (err) => {
     logger.error("HTTP server error", { err });
