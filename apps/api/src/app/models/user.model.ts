@@ -1,4 +1,4 @@
-import type z from "zod";
+import z from "zod";
 import { users } from "@repo/database/drizzle/schema/user.schema";
 import { createSelectSchema } from "@repo/database/drizzle/drizzle.client";
 
@@ -14,6 +14,13 @@ export const CreateUserModel = UserModel.omit({
   id: true,
   created_at: true,
   updated_at: true,
+  role: true,
+  image: true,
+}).extend({
+  image: z.string().optional(),
+  password: z.string().min(8),
+  callbackURL: z.string(),
+  rememberMe: z.boolean(),
 });
 export type CreateUser = z.infer<typeof CreateUserModel>;
 export type User = z.infer<typeof UserModel>;

@@ -17,6 +17,8 @@ export const pool = new Pool(config);
 // 'db' will be used to run typed queries against the database
 export const db = drizzle(pool, { schema });
 
+export type DB = typeof db;
+
 // Re-export helpfull stuff
 
 export type { PgColumn, PgTable, IndexColumn } from "drizzle-orm/pg-core";
