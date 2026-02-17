@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { fromNodeHeaders } from "better-auth/node";
-import { auth } from "#app/lib/auth.js";
+import { auth } from "#config/auth.config.js";
 import { HttpException } from "#app/errors/errors.js";
 import { AuthUser } from "#app/models/user.model.js";
 

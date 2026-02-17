@@ -1,5 +1,5 @@
 import { requestContext } from "#app/context/request.context.js";
-import { auth } from "#app/lib/auth.js";
+import { auth } from "#config/auth.config.js";
 import { fromNodeHeaders } from "better-auth/node";
 import type { Request, Response, NextFunction } from "express";
 import { randomUUID } from "node:crypto";

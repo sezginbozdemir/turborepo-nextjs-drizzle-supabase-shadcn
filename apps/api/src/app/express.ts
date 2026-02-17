@@ -10,7 +10,7 @@ import { responseLogger } from "./middlewares/response-logger.middleware";
 import { requestLogger } from "./middlewares/request-logger.middleware";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import { toNodeHandler } from "better-auth/node";
-import { auth } from "./lib/auth";
+import { auth } from "../config/auth.config";
 import { requireAuth } from "./middlewares/auth.middleware";
 
 export function createServer() {
