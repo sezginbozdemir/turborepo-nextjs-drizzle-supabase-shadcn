@@ -13,6 +13,7 @@ export const env = createEnv({
     SUPABASE_PROJECT_REF: z.string(),
     DATABASE_URL: z.string(),
     BETTER_AUTH_SECRET: z.string(),
+    SENTRY_KEY: z.string(),
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),

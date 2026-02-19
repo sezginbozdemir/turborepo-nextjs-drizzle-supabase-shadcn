@@ -25,16 +25,17 @@
     "@types/papaparse": "^5.3.16",
     "@types/supertest": "^6.0.3",
     "@vitest/coverage-istanbul": "^4.0.18",
-    "tsx": "^4.20.3",
     "esbuild": "^0.27.3",
     "supertest": "^7.2.2",
     "tsc-alias": "^1.8.16",
+    "tsx": "^4.20.3",
     "vitest": "^4.0.18"
   },
   "dependencies": {
     "@repo/database": "*",
     "@repo/mailer": "*",
     "@repo/shared": "*",
+    "@sentry/node": "^10.39.0",
     "better-auth": "^1.4.18",
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
