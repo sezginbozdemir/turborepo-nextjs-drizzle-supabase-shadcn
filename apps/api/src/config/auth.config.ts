@@ -1,8 +1,8 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "@repo/database/drizzle/drizzle.client";
-import { env } from "#config/env.config.js";
-import { schema } from "@repo/database/drizzle/drizzle.client";
+import { db } from "@repo/database";
+import { env } from "#/config/env.config.js";
+import { schema } from "@repo/database";
 
 export const auth = betterAuth({
   appName: "turborepo app",

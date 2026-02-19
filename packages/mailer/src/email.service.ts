@@ -1,11 +1,11 @@
 import nodemailer, { Transporter } from "nodemailer";
-import { TemplateEngine } from "./template.engine";
+import { TemplateEngine } from "./template.engine.js";
 import type {
   EmailConfig,
   EmailData,
   EmailResult,
   BulkEmailResult,
-} from "./types";
+} from "./types.js";
 import { createLogger } from "@repo/shared/logger";
 
 const logger = createLogger("email service");

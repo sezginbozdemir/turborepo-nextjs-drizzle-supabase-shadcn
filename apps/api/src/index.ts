@@ -1,6 +1,6 @@
 import { createLogger } from "@repo/shared/logger";
-import { env } from "#config/env.config.js";
-import { createServer } from "#app/express.js";
+import { env } from "#/config/env.config.js";
+import { createServer } from "#/app/express.js";
 
 const PORT = Number(env.SERVER_PORT) || 9000;
 

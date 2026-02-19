@@ -1,7 +1,6 @@
 import z from "zod";
-import { users } from "@repo/database/drizzle/schema/user.schema";
-import { createSelectSchema } from "@repo/database/drizzle/drizzle.client";
-
+import { users } from "@repo/database";
+import { createSelectSchema } from "@repo/database";
 export const UserModel = createSelectSchema(users);
 export type User = z.infer<typeof UserModel>;
 export const SessionUserModel = UserModel.omit({
@@ -12,7 +11,7 @@ export const SessionUserModel = UserModel.omit({
 });
 export type SessionUser = z.infer<typeof SessionUserModel>;
 
-export const CreateUserModel = UserModel.omit({
+export const SignUpUserModel = UserModel.omit({
   id: true,
   created_at: true,
   updated_at: true,
@@ -22,10 +21,19 @@ export const CreateUserModel = UserModel.omit({
 }).extend({
   image: z.string().optional(),
   password: z.string().min(8),
-  callbackURL: z.string(),
-  rememberMe: z.boolean(),
+  callbackURL: z.string().optional(),
+  rememberMe: z.boolean().optional(),
 });
-export type CreateUser = z.infer<typeof CreateUserModel>;
+export type SignUpUser = z.infer<typeof SignUpUserModel>;
+
+export const SignInUserModel = z.object({
+  email: z.string(),
+  password: z.string(),
+  callbackURL: z.string().optional(),
+  rememberMe: z.boolean().optional(),
+});
+export type SignInUser = z.infer<typeof SignInUserModel>;
+
 export const UserResponseModel = z.object({
   id: z.string(),
   name: z.string(),

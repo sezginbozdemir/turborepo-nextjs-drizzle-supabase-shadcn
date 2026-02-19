@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { createSender } from "src/email.sender";
+import { createSender } from "src/email.sender.js";
 import { createTestAccount } from "nodemailer";
-import { BulkEmailResult, EmailConfig, EmailResult } from "src/types";
-import { EmailService } from "src/email.service";
+import { BulkEmailResult, EmailConfig, EmailResult } from "src/types.js";
+import { EmailService } from "src/email.service.js";
 
 describe("email sender", () => {
   let sender: EmailService;

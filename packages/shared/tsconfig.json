@@ -1,10 +1,16 @@
 {
   "extends": "@repo/typescript-config/node.json",
   "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": ".",
+    "outDir": "./dist",
+    "declaration": true,
+    "noEmit": false,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "tests", "vitest.config.ts"]
+  "include": ["src"]
 }

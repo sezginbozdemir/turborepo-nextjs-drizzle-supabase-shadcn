@@ -1,6 +1,6 @@
 import Papa from "papaparse";
 import fs from "fs";
-import { createLogger } from "@repo/shared/logger";
+import { createLogger } from "../logger/console-logger.js";
 
 const logger = createLogger("csv  parser");
 

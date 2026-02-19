@@ -1,4 +1,4 @@
-import { CORS_OPTIONS } from "#config/cors.config.js";
+import { CORS_OPTIONS } from "#/config/cors.config.js";
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
@@ -6,12 +6,12 @@ import hpp from "hpp";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import { createServer as createHttpServer } from "http";
-import { responseLogger } from "./middlewares/response-logger.middleware";
-import { requestLogger } from "./middlewares/request-logger.middleware";
-import { errorHandler } from "./middlewares/error-handler.middleware";
+import { responseLogger } from "./middlewares/response-logger.middleware.js";
+import { requestLogger } from "./middlewares/request-logger.middleware.js";
+import { errorHandler } from "./middlewares/error-handler.middleware.js";
 import { toNodeHandler } from "better-auth/node";
-import { auth } from "../config/auth.config";
-import { UserRouter } from "./routes";
+import { auth } from "../config/auth.config.js";
+import UserRouter from "./routes/user.routes.js";
 
 export function createServer() {
   const app = express();
@@ -26,13 +26,13 @@ export function createServer() {
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
   app.use(cookieParser());
   app.set("json spaces", 0);
-  app.use(errorHandler);
 
   // Health check
   app.use("/ping", (_, res) => {
     res.status(200).json({ message: "OK" });
   });
-  app.use("/api/auth", UserRouter);
+  app.use("/api", UserRouter);
+  app.use(errorHandler);
 
   const server = createHttpServer(app);
 

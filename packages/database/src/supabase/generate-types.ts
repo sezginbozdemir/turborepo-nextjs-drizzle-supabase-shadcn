@@ -1,4 +1,4 @@
-import { env } from "../env";
+import { env } from "../env.js";
 import { createLogger } from "@repo/shared/logger";
 import { execSync } from "child_process";
 const logger = createLogger("database module");

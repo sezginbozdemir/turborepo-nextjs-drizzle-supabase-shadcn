@@ -1,5 +1,5 @@
-import type { DrizzleQueryError } from "@repo/database/drizzle/drizzle.client";
-import { DatabaseError as PostgresError } from "@repo/database/drizzle/drizzle.client";
+import type { DrizzleQueryError } from "@repo/database";
+import { DatabaseError as PostgresError } from "@repo/database";
 
 export class DatabaseError extends Error {
   params?: string[];

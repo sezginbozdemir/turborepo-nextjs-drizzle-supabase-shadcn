@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { env } from "../env";
+import { env } from "../env.js";
 import { Pool, type ClientConfig } from "pg";
-import * as schema from "./schema/index";
+import * as schema from "./schema/index.js";
 
 // Define config for postgres client
 
@@ -23,6 +23,7 @@ export type DB = typeof db;
 
 export type { PgColumn, PgTable, IndexColumn } from "drizzle-orm/pg-core";
 export * from "drizzle-orm";
-export * as schema from "./schema";
+export * from "./schema/index.js";
+export * as schema from "./schema/index.js";
 export * from "drizzle-zod";
 export { DatabaseError } from "pg";

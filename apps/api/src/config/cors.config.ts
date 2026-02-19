@@ -1,4 +1,4 @@
-import { env } from "./env.config";
+import { env } from "./env.config.js";
 import type { CorsOptions } from "cors";
 
 const IS_DEV = env.NODE_ENV === "development" || env.NODE_ENV === "test";

@@ -6,7 +6,7 @@ resolveEnvs();
 export const env = createEnv({
   server: {
     NEXT_PUBLIC_SUPABASE_URL: z.string(),
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string(),
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string(),
     NEXT_PUBLIC_WEB_URL: z.string(),
     NEXT_PUBLIC_API_URL: z.string(),
     SERVER_PORT: z.string(),

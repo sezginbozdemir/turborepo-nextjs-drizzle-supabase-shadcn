@@ -1,6 +1,6 @@
-import { EmailService } from "./email.service";
-import type { EmailConfig } from "./types";
-import { env } from "./env";
+import { EmailService } from "./email.service.js";
+import type { EmailConfig } from "./types.js";
+import { env } from "./env.js";
 import { createLogger } from "@repo/shared/logger";
 
 const logger = createLogger("email sender");

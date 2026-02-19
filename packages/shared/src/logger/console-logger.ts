@@ -9,8 +9,8 @@ import {
   LogEntry,
   LoggerConfig,
   TimerData,
-} from "./logger.interface";
-import { env } from "../env";
+} from "./logger.interface.js";
+import { env } from "../env.js";
 
 class ConsoleLogger {
   // A label indicating where this logger is used ( service name, module name, etc. )

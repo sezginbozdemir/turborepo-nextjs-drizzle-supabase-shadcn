@@ -1,5 +1,5 @@
 import { join, resolve } from "path";
-import { resolveEnvs } from "@/env-loader/resolve.env";
+import { resolveEnvs } from "@/env-loader/resolve.env.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { existsSync, unlinkSync, writeFileSync } from "fs";
 

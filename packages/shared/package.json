@@ -3,24 +3,38 @@
   "version": "1.0.0",
   "type": "module",
   "exports": {
-    "./logger": "./src/logger/index.ts",
-    "./parser": "./src/parser/csv.parser.ts",
-    "./env-loader": "./src/env-loader/resolve.env.ts"
+    "./logger": {
+      "types": "./dist/src/logger/index.d.ts",
+      "import": "./dist/src/logger/index.js",
+      "default": "./dist/src/logger/index.js"
+    },
+    "./parser": {
+      "types": "./dist/src/parser/csv.parser.d.ts",
+      "import": "./dist/src/parser/csv.parser.js",
+      "default": "./dist/src/parser/csv.parser.js"
+    },
+    "./env-loader": {
+      "types": "./dist/src/env-loader/resolve.env.d.ts",
+      "import": "./dist/src/env-loader/resolve.env.js",
+      "default": "./dist/src/env-loader/resolve.env.js"
+    }
   },
   "scripts": {
+    "build": "tsc && tsc-alias",
     "dev": "tsc --noEmit -w --preserveWatchOutput",
     "test": "vitest run"
   },
   "devDependencies": {
     "@repo/vitest-config": "*",
-    "@vitest/coverage-istanbul": "^4.0.18",
     "@types/node": "^22.15.3",
+    "@vitest/coverage-istanbul": "^4.0.18",
     "tsx": "^4.20.3",
-    "typescript": "5.8.2"
+    "typescript": "5.8.2",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
-    "vitest": "^4.0.18",
-    "papaparse": "^5.5.3"
+    "papaparse": "^5.5.3",
+    "tsc-alias": "^1.8.16"
   },
   "license": "ISC"
 }

@@ -1,4 +1,4 @@
-import { resolveEnvs } from "./env-loader/resolve.env";
+import { resolveEnvs } from "./env-loader/resolve.env.js";
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 resolveEnvs();

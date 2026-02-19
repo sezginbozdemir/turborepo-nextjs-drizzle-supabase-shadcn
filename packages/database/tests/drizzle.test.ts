@@ -11,7 +11,7 @@ import { execa } from "execa";
 import { db, pool, eq } from "@/drizzle/drizzle.client";
 import { pgTable, text } from "drizzle-orm/pg-core";
 
-const table = "some_table"; // IMPORTANT: avoid hyphens unless you always quote in SQL
+const table = "some_table";
 const __vitestTable = pgTable(table, {
   id: text("id").primaryKey(),
   name: text("name").notNull(),
@@ -46,37 +46,37 @@ function removeExportLine() {
   writeFileSync(schemaFile, next, "utf8");
 }
 
-beforeAll(async () => {
-  mkdirSync(schemaDir, { recursive: true });
-  if (!existsSync(schemaFile)) writeFileSync(schemaFile, "", "utf8");
-
-  writeFileSync(tableFile, tableFileContent.trimStart(), "utf8");
-  ensureExportLine();
-
-  await execa("npm", ["run", "db:push"], {
-    stdio: "inherit",
-  });
-});
-
-afterAll(async () => {
-  try {
-    await pool.query(`drop table if exists "${table}"`);
-  } catch {}
-
-  // file cleanup
-  try {
-    removeExportLine();
-  } catch {}
-  try {
-    if (existsSync(tableFile)) unlinkSync(tableFile);
-  } catch {}
-
-  try {
-    await pool.end();
-  } catch {}
-});
-
 describe("drizzle integration", () => {
+  beforeAll(async () => {
+    mkdirSync(schemaDir, { recursive: true });
+    if (!existsSync(schemaFile)) writeFileSync(schemaFile, "", "utf8");
+
+    writeFileSync(tableFile, tableFileContent.trimStart(), "utf8");
+    ensureExportLine();
+
+    await execa("npm", ["run", "db:push"], {
+      stdio: "inherit",
+    });
+  });
+
+  afterAll(async () => {
+    try {
+      await pool.query(`drop table if exists "${table}"`);
+    } catch {}
+
+    // file cleanup
+    try {
+      removeExportLine();
+    } catch {}
+    try {
+      if (existsSync(tableFile)) unlinkSync(tableFile);
+    } catch {}
+
+    try {
+      await pool.end();
+    } catch {}
+  });
+
   it("inserts/selects", async () => {
     await db.delete(__vitestTable).where(eq(__vitestTable.id, "1"));
 

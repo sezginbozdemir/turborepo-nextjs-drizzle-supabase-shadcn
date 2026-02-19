@@ -1,7 +1,7 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { env } from "../env";
-import type { Database } from "@repo/database/supabase/supabase.types";
+import type { SupabaseDatabase } from "@repo/database";
 
 /**
  * Especially important if using Fluid compute: Don't put this client in a
@@ -11,9 +11,9 @@ import type { Database } from "@repo/database/supabase/supabase.types";
 export async function createClient() {
   const cookieStore = await cookies();
 
-  return createServerClient<Database>(
+  return createServerClient<SupabaseDatabase>(
     env.NEXT_PUBLIC_SUPABASE_URL,
-    env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
     {
       cookies: {
         get(name: string) {

@@ -3,13 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "imports": {
-    "#*": "./src/*"
-  },
   "scripts": {
-    "build": "rimraf dist & tsc",
+    "build": "node ./esbuild.config.js",
     "dev": "tsx --watch src/index.ts",
-    "start": "node dist/index.js",
+    "start": "node dist/bundle.js",
     "test": "vitest run"
   },
   "keywords": [],
@@ -17,7 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "@repo/vitest-config": "*",
-    "@vitest/coverage-istanbul": "^4.0.18",
     "@types/compression": "^1.8.1",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
@@ -27,18 +23,25 @@
     "@types/morgan": "^1.9.10",
     "@types/node": "^24.1.0",
     "@types/papaparse": "^5.3.16",
-    "rimraf": "^6.0.1",
+    "@types/supertest": "^6.0.3",
+    "@vitest/coverage-istanbul": "^4.0.18",
     "tsx": "^4.20.3"
   },
   "dependencies": {
-    "vitest": "^4.0.18",
+    "@repo/database": "*",
+    "@repo/mailer": "*",
+    "@repo/shared": "*",
     "better-auth": "^1.4.18",
     "compression": "^1.8.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
+    "esbuild": "^0.27.3",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
     "hpp": "^0.2.3",
-    "morgan": "^1.10.1"
+    "morgan": "^1.10.1",
+    "supertest": "^7.2.2",
+    "tsc-alias": "^1.8.16",
+    "vitest": "^4.0.18"
   }
 }

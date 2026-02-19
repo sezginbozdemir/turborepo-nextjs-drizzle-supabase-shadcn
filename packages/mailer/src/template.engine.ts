@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 import { existsSync, readdirSync, readFileSync } from "fs";
 import { join, extname, basename } from "path";
-import type { TemplateData } from "./types";
+import type { TemplateData } from "./types.js";
 import { createLogger } from "@repo/shared/logger";
 
 /**
