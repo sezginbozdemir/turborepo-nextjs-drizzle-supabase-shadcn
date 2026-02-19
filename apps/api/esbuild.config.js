@@ -11,6 +11,7 @@ esbuild
       "cookie-parser",
       "cors",
       "esbuild",
+      "@sentry/node",
       "express",
       "hpp",
       "pg",
