@@ -12,7 +12,6 @@ esbuild
       "cors",
       "esbuild",
       "express",
-      "helmet",
       "hpp",
       "pg",
     ],

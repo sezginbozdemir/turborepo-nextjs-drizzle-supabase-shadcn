@@ -1,0 +1,52 @@
+# Dependencies
+node_modules
+**/node_modules
+.pnp
+.pnp.js
+
+# Local env files (keep ignored to avoid baking secrets into image)
+.env
+.env.*
+!.env.example
+
+# Testing
+coverage
+coverage/
+coverage.json
+
+# Turbo
+.turbo
+**/.turbo
+
+# Vercel
+.vercel
+
+# Build Outputs
+.next
+**/.next
+out
+**/out
+build
+**/build
+dist
+**/dist
+
+# Debug/logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+logs/
+
+# Misc
+.DS_Store
+*.pem
+
+# VCS
+.git
+.gitignore
+
+# Docker files you don't want in context (optional)
+docker-compose.yml
+Dockerfile

@@ -3,6 +3,11 @@ import { resolve } from "node:path";
 import { config } from "dotenv";
 
 export const resolveEnvs = () => {
+  const nodeEnv = process.env.NODE_ENV;
+
+  if (nodeEnv === "production") return;
+  if (process.env.CI === "true" || process.env.DOCKER === "true") return;
+
   const upFolderSyntax = "../";
   const folderDepth = 10;
   const dir = process.cwd();
