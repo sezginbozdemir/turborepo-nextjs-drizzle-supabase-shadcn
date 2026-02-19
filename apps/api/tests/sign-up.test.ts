@@ -1,28 +1,24 @@
-import { describe, it, expect, beforeEach } from "vitest";
-import { app } from "./setup.js";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, makeSignUpPayload } from "./setup.js";
 import { SignUpUser } from "#/app/models/user.model.js";
 import request from "supertest";
-import { makeEmail } from "./setup";
 
-export const makeSignUpPayload = (
-  overrides?: Partial<SignUpUser>,
-): SignUpUser => ({
-  email: makeEmail(),
-  password: "Password123!",
-  name: "User",
-  phone: null,
-  ...overrides,
-});
 describe("POST /api/auth/sign-up", () => {
-  let uniquePayload: SignUpUser;
+  let payload: SignUpUser;
 
-  beforeEach(() => {
-    uniquePayload = makeSignUpPayload();
+  beforeAll(() => {
+    payload = makeSignUpPayload();
   });
+
+  afterAll(async () => {
+    const del = await request(app)
+      .delete("/api/users")
+      .query({ email: payload.email });
+    expect(del.status).toBe(200);
+  });
+
   it("creates a user with valid payload", async () => {
-    const res = await request(app)
-      .post("/api/auth/sign-up")
-      .send(uniquePayload);
+    const res = await request(app).post("/api/auth/sign-up").send(payload);
 
     expect(res.status).toBe(201);
   });
@@ -44,11 +40,7 @@ describe("POST /api/auth/sign-up", () => {
   });
 
   it("rejects duplicate email", async () => {
-    const email = makeEmail();
-    const payload = makeSignUpPayload({ email: email, name: "Alice" });
-    await request(app).post("/api/auth/sign-up").send(payload);
     const res = await request(app).post("/api/auth/sign-up").send(payload);
-
     expect([409, 422]).toContain(res.status);
   });
 });

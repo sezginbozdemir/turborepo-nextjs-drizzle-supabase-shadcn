@@ -1,7 +1,6 @@
-import { describe, it, expect, beforeAll } from "vitest";
-import { app, makeEmail } from "./setup";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, makeEmail, makeSignUpPayload } from "./setup";
 import request from "supertest";
-import { makeSignUpPayload } from "./sign-up.test";
 
 describe("GET  /api/user", () => {
   let email: string;
@@ -13,6 +12,10 @@ describe("GET  /api/user", () => {
     const res = await request(app).post("/api/auth/sign-up").send(payload);
     userId = res.body.id;
     expect(res.status).toBe(201);
+  });
+  afterAll(async () => {
+    const del = await request(app).delete("/api/users").query({ email });
+    expect(del.status).toBe(200);
   });
 
   it("gets user by email", async () => {

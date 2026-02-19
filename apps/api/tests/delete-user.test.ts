@@ -1,7 +1,6 @@
 import { beforeEach, afterEach, describe, it, expect } from "vitest";
-import { app, makeEmail } from "./setup.js";
+import { app, makeEmail, makeSignUpPayload } from "./setup.js";
 import request from "supertest";
-import { makeSignUpPayload } from "./sign-up.test.js";
 
 describe("DELETE /api/users", () => {
   let email: string;

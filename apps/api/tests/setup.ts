@@ -2,12 +2,23 @@ import { createServer } from "#/app/express.js";
 import type { Server } from "node:http";
 import { beforeAll, afterAll } from "vitest";
 import { Express } from "express";
+import { SignUpUser } from "#/app/models/user.model";
 
 let server: Server;
 export let app: Express;
 
 export const makeEmail = (prefix = "user"): string =>
   `${prefix}-${Math.random().toString(16).slice(2)}@example.com`;
+
+export const makeSignUpPayload = (
+  overrides?: Partial<SignUpUser>,
+): SignUpUser => ({
+  email: makeEmail(),
+  password: "Password123!",
+  name: "User",
+  phone: null,
+  ...overrides,
+});
 
 beforeAll(async () => {
   const { app: expressApp, server: httpServer } = createServer();

@@ -1,8 +1,7 @@
-import { describe, it, expect, beforeAll } from "vitest";
-import { app, makeEmail } from "./setup";
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+import { app, makeEmail, makeSignUpPayload } from "./setup";
 import { SignInUser } from "#/app/models/user.model.js";
 import request from "supertest";
-import { makeSignUpPayload } from "./sign-up.test";
 
 describe("POST /api/auth/sign-in", () => {
   let payload: SignInUser;
@@ -13,6 +12,11 @@ describe("POST /api/auth/sign-in", () => {
     const payload = makeSignUpPayload({ email: email });
     const res = await request(app).post("/api/auth/sign-up").send(payload);
     expect(res.status).toBe(201);
+  });
+
+  afterAll(async () => {
+    const del = await request(app).delete("/api/users").query({ email });
+    expect(del.status).toBe(200);
   });
 
   it("signs in user with valid payload", async () => {
