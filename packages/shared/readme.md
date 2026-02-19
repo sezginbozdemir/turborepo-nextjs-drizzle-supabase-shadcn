@@ -2,6 +2,7 @@
 
 Shared utilities for your monorepo. Currently includes:
 
+- centralized environment variable loading
 - A configurable console/file logger
 - A CSV parser utility
 
@@ -68,4 +69,23 @@ import { parseCsv } from "@repo/shared/parser";
 const rows = await parseCsv("path/to/file");
 
 // rows is an array of objects
+```
+
+---
+
+### env-loader
+
+Utility package for centralized environment variable loading and validation in the monorepo.
+
+#### Usage
+
+```ts
+import { resolveEnvs } from "@repo/env";
+
+// Initialize at app startup.
+resolveEnvs();
+
+// Then use your typed variables
+
+console.log(env.NODE_ENV);
 ```

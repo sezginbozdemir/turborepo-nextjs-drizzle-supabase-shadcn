@@ -20,6 +20,7 @@ all managed within a single Turborepo monorepo.
 - **shared** — Shared utilities and logic between apps
 - **typescript-config** — tsconfig base configuration
 - **ui** — Reusable UI components (shadcn/ui)
+- **vitest-config** — Shared Vitest configuration
 
 ---
 

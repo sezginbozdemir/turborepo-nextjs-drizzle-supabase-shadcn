@@ -8,10 +8,6 @@ This package provides shared database clients for the monorepo. It exports:
 
 ---
 
-It relies on **`@repo/shared`** for environment variable loading.
-
----
-
 ### Drizzle Client
 
 Located in `drizzle/drizzle.client.ts`.  

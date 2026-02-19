@@ -3,7 +3,7 @@
 This package is powered by [shadcn/ui](https://ui.shadcn.com/)
 
 - `components.json` describes the shadcn config
-- new components can be added by generating them via shadcn cli into `src./components`
+- new components can be added by generating them via shadcn cli into `src/components`
 
 ---
 
