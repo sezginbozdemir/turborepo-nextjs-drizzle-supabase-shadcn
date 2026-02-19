@@ -12,6 +12,7 @@ export const env = createEnv({
     SERVER_PORT: z.string(),
     SUPABASE_PROJECT_REF: z.string(),
     DATABASE_URL: z.string(),
+    BETTER_AUTH_SECRET: z.string(),
     NODE_ENV: z
       .enum(["development", "production", "test"])
       .default("development"),

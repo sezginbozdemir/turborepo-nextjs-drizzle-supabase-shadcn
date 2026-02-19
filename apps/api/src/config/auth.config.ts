@@ -6,6 +6,7 @@ import { schema } from "@repo/database";
 
 export const auth = betterAuth({
   appName: "turborepo app",
+  secret: env.BETTER_AUTH_SECRET,
   database: drizzleAdapter(db, { provider: "pg", schema }),
   baseURL: env.NEXT_PUBLIC_API_URL.replace("/api", ""),
   basePath: "/api/auth",
