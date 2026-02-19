@@ -12,6 +12,7 @@ import { errorHandler } from "./middlewares/error-handler.middleware.js";
 import { toNodeHandler } from "better-auth/node";
 import { auth } from "../config/auth.config.js";
 import UserRouter from "./routes/user.routes.js";
+import * as Sentry from "@sentry/node";
 
 export function createServer() {
   const app = express();
@@ -32,6 +33,10 @@ export function createServer() {
     res.status(200).json({ message: "OK" });
   });
   app.use("/api", UserRouter);
+  Sentry.setupExpressErrorHandler(app);
+  app.get("/debug-sentry", function mainHandler(_req, _res) {
+    throw new Error("My first Sentry error!");
+  });
   app.use(errorHandler);
 
   const server = createHttpServer(app);
