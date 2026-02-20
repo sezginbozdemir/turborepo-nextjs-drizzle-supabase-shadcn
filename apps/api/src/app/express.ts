@@ -13,6 +13,7 @@ import { toNodeHandler } from "better-auth/node";
 import { auth } from "../config/auth.config.js";
 import UserRouter from "./routes/user.routes.js";
 import * as Sentry from "@sentry/node";
+import { csrfMiddleware } from "./middlewares/csrf.middleware.js";
 
 export function createServer() {
   const app = express();
@@ -22,6 +23,7 @@ export function createServer() {
   app.use(helmet());
   app.use(hpp());
   app.use(compression());
+  app.use(csrfMiddleware);
   app.all("/api/auth", toNodeHandler(auth));
   app.use(express.json({ limit: "10mb" }));
   app.use(express.urlencoded({ extended: true, limit: "10mb" }));
