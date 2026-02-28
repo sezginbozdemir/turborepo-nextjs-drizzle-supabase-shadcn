@@ -24,6 +24,27 @@ all managed within a single Turborepo monorepo.
 
 ---
 
+## Getting Started
+
+```bash
+npm install
+```
+
+Copy `.env.example` to `.env` in the relevant `apps/` directories and fill in your values, then:
+
+```bash
+npm run build     # Build all packages
+npm run dev       # Start all apps in dev mode
+```
+
+## Testing
+
+```bash
+npm run test      # Run integration tests across the monorepo
+```
+
+---
+
 ## Purpose
 
 This boilerplate is meant to serve as a clean starting point for full‑stack projects with shared code, modular architecture, and modern tooling.
